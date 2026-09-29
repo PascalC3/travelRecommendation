@@ -1,68 +1,157 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navigation Bar</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBloom - Explore Dream Destinations</title>
+    <link rel="stylesheet" href="travel_recommendation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <i class="fas fa-globe"></i>
+                <span>TravelBloom</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home" onclick="goHome()">Home</a></li>
+                <li><a href="#about" onclick="goAbout()">About Us</a></li>
+                <li><a href="#contact" onclick="goContact()">Contact Us</a></li>
+            </ul>
 
-  <!-- Barre de navigation -->
-  <nav class="navbar">
-    <div class="navbar-container">
-      
-      <!-- Logo et nom du site -->
-      <div class="navbar-brand">
-        <img src="logo.png" alt="Logo" class="logo">
-        <span class="website-name">TravelHub</span>
-      </div>
+            <div class="search-container" id="searchContainer">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Enter a destination or keyword"
+                    class="search-input"
+                >
+                <button class="search-btn" onclick="searchRecommendations()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <button class="clear-btn" onclick="clearResults()">Clear</button>
+            </div>
+        </div>
+    </nav>
 
-      <!-- Menu de navigation -->
-      <ul class="navbar-menu">
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#about" class="nav-link">About Us</a></li>
-        <li><a href="#contact" class="nav-link">Contact Us</a></li>
-      </ul>
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>EXPLORE DREAM DESTINATION</h1>
+                <p>The Travel Recommendation app helps users explore popular travel destinations through an interactive and user-friendly interface. It allows users to search for beaches, temples, countries, or specific country names, discover hidden gems with images and descriptions. The app dynamically fetches data from a structured JSON file, displaying relevant results. It provides a simple and efficient way to plan your next adventure.</p>
+                <button class="book-btn" onclick="document.getElementById('searchInput').focus()">Book Now</button>
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
 
-      <!-- Barre de recherche -->
-      <div class="search-container">
-        <input 
-          type="text" 
-          id="searchInput" 
-          class="search-input" 
-          placeholder="Enter a destination or keyword"
-        >
-        <button id="searchBtn" class="search-btn">
-          <span>🔍</span> Search
-        </button>
-        <button id="resetBtn" class="reset-btn">Reset</button>
-      </div>
-
-    </div>
-  </nav>
-
-  <!-- Contenu principal -->
-  <main class="main-content">
-    <section id="home" class="section">
-      <h1>Home Page</h1>
-      <p>Bienvenue sur notre site de voyage !</p>
+        <!-- RESULTS SECTION -->
+        <div id="resultsContainer" class="results-container">
+            <div id="results" class="results-grid"></div>
+        </div>
     </section>
 
-    <section id="about" class="section">
-      <h1>About Us</h1>
-      <p>Découvrez notre histoire et notre mission.</p>
+    <!-- ABOUT US PAGE -->
+    <section id="about" class="page">
+        <div class="about-hero">
+            <div class="about-content">
+                <h1>ABOUT US</h1>
+                <p>Welcome to Our Company! We are a team of passionate individuals dedicated to providing exceptional travel services and products. At our core, we believe in creating unforgettable experiences for people traveling to different destinations around the world. Our values include quality, innovation, customer satisfaction, and integrity. We strive to be a trusted partner for our customers and work together to achieve our goals.</p>
+                <p>Feel free to explore our website to learn more about what we offer!</p>
+            </div>
+        </div>
+
+        <!-- TEAM SECTION -->
+        <div class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>John Doe</h3>
+                    <p>CEO</p>
+                    <small>Leads the company with overall strategy and vision</small>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Celina Thomas</h3>
+                    <p>Team Lead</p>
+                    <small>Manages project delivery and client relationships</small>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Mike Tyson</h3>
+                    <p>Delivery Head</p>
+                    <small>Manages project delivery and client relationships</small>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="section">
-      <h1>Contact Us</h1>
-      <p>Nous serions heureux de vous entendre !</p>
+    <!-- CONTACT US PAGE -->
+    <section id="contact" class="page">
+        <div class="contact-hero">
+            <div class="contact-content">
+                <h1>CONTACT US</h1>
+                <p>Get in touch</p>
+            </div>
+        </div>
+
+        <div class="contact-form-container">
+            <form id="contactForm" class="contact-form" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        required
+                        placeholder="Your Name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required
+                        placeholder="Your Email"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        rows="6" 
+                        required
+                        placeholder="Your Message"
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
     </section>
 
-    <!-- Zone de résultats de recherche -->
-    <div id="searchResults" class="search-results"></div>
-  </main>
-
-  <script src="script.js"></script>
+    <script src="travel_recommendation.js"></script>
 </body>
 </html>
